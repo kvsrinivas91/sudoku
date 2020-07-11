@@ -1,5 +1,16 @@
-function easy_set(){
-    
+function clear_highlight(){
+    for( var i=0;i<9;i++){
+        for(var j=0;j<9;j++){
+            var i_id = "i"+i+j;
+            var input_var = document.querySelector("#"+i_id);
+            input_number = input_var.value;
+            input_var.classList.remove("same_number");
+            input_var.classList.remove("highlight_color");
+        }
+    }
+}
+
+function enable_input(){
     for (var i=0; i<9; i++){
         for(var j=0; j<9; j++){
             var i_id = "i"+i+j;
@@ -7,7 +18,11 @@ function easy_set(){
             document.getElementById(i_id).disabled = false ;
         }
     }
+}
 
+function easy_set(){
+    
+    enable_input()
     // Values
     document.getElementById("i03").value =2 ;
     document.getElementById("i04").value =6 ;
@@ -100,18 +115,12 @@ function easy_set(){
     document.getElementById("i84").disabled = true ;
     document.getElementById("i85").disabled = true ;
 
-
+    clear_highlight();
 }
 
 function medium_set(){
 
-    for (var i=0; i<9; i++){
-        for(var j=0; j<9; j++){
-            var i_id = "i"+i+j;
-            document.getElementById(i_id).value = "" ;
-            document.getElementById(i_id).disabled = false ;
-        }
-    }
+    enable_input()
     
     // Values
     document.getElementById("i01").value =2 ;
@@ -182,18 +191,13 @@ function medium_set(){
     document.getElementById("i85").disabled = true ;
     document.getElementById("i87").disabled = true ;
 
+    clear_highlight();
 
 }
 
 function hard_set(){
 
-    for (var i=0; i<9; i++){
-        for(var j=0; j<9; j++){
-            var i_id = "i"+i+j;
-            document.getElementById(i_id).value = "" ;
-            document.getElementById(i_id).disabled = false ;
-        }
-    }
+    enable_input()
     
     // Values
     document.getElementById("i03").value =6 ;
@@ -260,6 +264,7 @@ function hard_set(){
     document.getElementById("i81").disabled = true ;
     document.getElementById("i86").disabled = true ;
 
+    clear_highlight();
 }
 
 function execute(){
@@ -267,8 +272,6 @@ function execute(){
     var sum;
     var set = new Set();
 
-
-// !set.has(k)
 
     for (var i=0; i<9; i++){
         for(var j=0; j<9; j++){
@@ -657,6 +660,30 @@ function highlight_function(id){
                 var i_id = "i"+i+j;
                 var highlight = document.querySelector("#"+i_id);
                 highlight.classList.add("highlight_color");    
+            }
+        }
+    }
+
+    // Hightlighting same numbers
+    var this_number = document.querySelector("#"+id).value;
+    for( var i=0;i<9;i++){
+        for(var j=0;j<9;j++){
+            var i_id = "i"+i+j;
+            var input_var = document.querySelector("#"+i_id);
+            input_number = input_var.value;
+            input_var.classList.remove("same_number");
+        }
+    }
+
+    for( var i=0;i<9;i++){
+        for(var j=0;j<9;j++){
+            var i_id = "i"+i+j;
+            var input_var = document.querySelector("#"+i_id);
+            input_number = input_var.value;
+            if(input_number==this_number && this_number!=""){
+                // console.log("Number",input_number)
+                input_var.classList.add("same_number");
+                input_var.classList.remove("highlight_color");
             }
         }
     }

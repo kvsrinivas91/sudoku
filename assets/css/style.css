@@ -69,6 +69,18 @@ input:disabled{
   color: #696969		;
 }
 
+input:hover{
+  background-color: #d3eafc;
+}
+
+.input_class:focus{
+  background-color: #bbdefb !important;
+}
+
+.same_number{
+  background-color: #BBDEFB !important;
+}
+
 .highlight_color{
   background-color: #e2e7ed;
 }
